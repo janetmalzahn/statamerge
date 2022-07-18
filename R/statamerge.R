@@ -4,7 +4,7 @@
 # July 17, 2022
 ########################################
 statamerge <- function(master, using, mergetype = "1:1", merge_vars,
-                        keepusing, suffix1 = ".x", suffix2 = ".y"){
+                       keepusing, suffix1 = ".x", suffix2 = ".y"){
   # check for uniqueness in master and using
   if ((check_duplicates(master,merge_vars)) & (mergetype != "m:1")){
     stop("Master is not unique on merge variables")
@@ -104,4 +104,3 @@ replace_allvars <- function(df, varnames, suffix1 = ".x", suffix2 = ".y"){
   # return
   return(df1)
 }
-
