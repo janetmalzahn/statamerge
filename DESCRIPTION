@@ -1,12 +1,17 @@
 Package: statamerge
-Title: What the Package Does (One Line, Title Case)
+Title: Stata Merge Wrapper for DPLYR Joins
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Janet", "Malzahn", , "jmalzahn@stanford.edu", role = c("aut", "cre"))
+Description: A wrapper function for giving dplyr joins the same functionality of Stata merges. Integrates merge codes; checks for uniqueness to perform 1:1, m:1, and 1:m merges; combines variables from master and using with the same name.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+Imports: 
+    dplyr,
+    generics,
+    magrittr,
+    tidyselect
+URL: https://github.com/janetmalzahn/statamerge
+BugReports: https://github.com/janetmalzahn/statamerge/issues
