@@ -26,20 +26,29 @@ devtools::install_github("janetmalzahn/statamerge")
 
 Statamerge is particularly useful for those learning R with a background
 in Stata. However, Stata’s merges have plenty of useful features for
-those frequently working with merged datasets: 1. `statamerge` checks
-for uniqueness to ensure the dataset matches expectations. A 1:1 merge
-checks for uniqueness in each dataset to ensure that each observation in
-the master can will only be matched to a (maximum) of one observation in
-using. A 1:m or m:1 checks for uniqueness in either the master (m:1) or
-the using (1:m) datasets. This ensures that the merged dataset will have
-no more observations than the non-unique dataset. 2. `statamerge`
-includes a code for whether an observation was matched, unmatched from
-the master dataset, or unmatched from the using. With current dplyr
-merges, there is no simple way to distinguish items that were matched
-from items that were not, or which dataset unamtched observations came
-from. `statamerge` outputs a dataset with a merge code that is 1 if the
-observation was unmatched from the master, 2 if the observation was
-unmatched from using, or 3 if the observation was merged.
+those frequently working with merged datasets:
+
+1.  `statamerge` checks for uniqueness to ensure the dataset matches
+    expectations. A 1:1 merge checks for uniqueness in each dataset to
+    ensure that each observation in the master can will only be matched
+    to a (maximum) of one observation in using. A 1:m or m:1 checks for
+    uniqueness in either the master (m:1) or the using (1:m) datasets.
+    This ensures that the merged dataset will have no more observations
+    than the non-unique dataset.
+
+2.  `statamerge` includes a code for whether an observation was matched,
+    unmatched from the master dataset, or unmatched from the using. With
+    current dplyr merges, there is no simple way to distinguish items
+    that were matched from items that were not, or which dataset
+    unamtched observations came from. `statamerge` outputs a dataset
+    with a merge code that is 1 if the observation was unmatched from
+    the master, 2 if the observation was unmatched from using, or 3 if
+    the observation was merged.
+
+3.  `statamerge` coalesces variables that share the same name in master
+    and using into one dataset. Instead of creating two separate
+    variables with a suffix indicating which dataset the observations
+    came from, it combines one into one column.
 
 ## Example
 
@@ -119,30 +128,3 @@ statamerge(merge3, merge1, mergetype = "m:1", merge_vars = "band")
 #> 5 The Underdog                Spoon           indie banger          3
 #> 6 <NA>                        Big Thief       folk  band            2
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
