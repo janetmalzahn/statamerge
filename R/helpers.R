@@ -6,7 +6,8 @@ check_duplicates <- function(df, merge_vars){
   # check if a dataframe is duplicated across any rows
   # returns TRUE if there are duplicates, false if not
   de_dup <- df %>%
-    dplyr::select(all_of(merge_vars)) %>%
+    dplyr::select(dplyr::all_of(merge_vars)) %>%
+    dplyr::filter(dplyr::if_any(tidyselect::everything(), ~!is.na(.))) %>%
     anyDuplicated()
   if (de_dup == 0){
     return(FALSE)
@@ -26,11 +27,11 @@ replace_var <- function(df, varname, suffix1 = ".x", suffix2 = ".y"){
 replace_allvars <- function(df, varnames, suffix1 = ".x", suffix2 = ".y"){
   if (length(varnames) > 1){
   # iterate over a varlist and coalesce the merged suffix variables
-  x_vars <- unlist(sapply(varnames, function(x) paste0(x, ".x")), use.names = FALSE)
-  y_vars <- unlist(sapply(varnames, function(x) paste0(x, ".y")), use.names = FALSE)
+  x_vars <- unlist(sapply(varnames, function(x) paste0(x, suffix1)), use.names = FALSE)
+  y_vars <- unlist(sapply(varnames, function(x) paste0(x, suffix2)), use.names = FALSE)
   } else if (length(varnames == 1)) {
-    x_vars <- paste0(varnames, ".x")
-    y_vars <- paste0(varnames, ".y")
+    x_vars <- paste0(varnames, suffix1)
+    y_vars <- paste0(varnames, suffix2)
   } else{
     return(df)
   }

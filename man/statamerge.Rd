@@ -24,7 +24,7 @@ statamerge(
 
 \item{suffix1}{A string denoting an alternate intermediate suffix for the join (.x)}
 
-\item{suffix2}{A string denoting an alternate intermediat suffix for the join (.y)}
+\item{suffix2}{A string denoting an alternate intermediate suffix for the join (.y)}
 }
 \value{
 A merged dataframe
