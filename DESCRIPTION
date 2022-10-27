@@ -1,6 +1,6 @@
 Package: statamerge
 Title: Stata Merge Wrapper for DPLYR Joins
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Janet", "Malzahn", , "jmalzahn@stanford.edu", role = c("aut", "cre"))
 Description: A wrapper function for giving dplyr joins the same functionality of Stata merges. Integrates merge codes; checks for uniqueness to perform 1:1, m:1, and 1:m merges; combines variables from master and using with the same name.
